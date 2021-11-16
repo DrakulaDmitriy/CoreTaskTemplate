@@ -19,9 +19,9 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement statement = Util.getConnection().createStatement()) {
             statement.executeUpdate("CREATE TABLE USERS" +
                     "(id BIGINT not NULL PRIMARY KEY AUTO_INCREMENT, " +
-                    "name VARCHAR(255) not NULL, " +
-                    "lastName VARCHAR(255) not NULL, " +
-                    "age INT UNSIGNED not NULL)");
+                    "name VARCHAR(45) not NULL, " +
+                    "lastName VARCHAR(45) not NULL, " +
+                    "age TINYINT UNSIGNED not NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try (Statement statement = Util.getConnection().createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT id, name, lastName, age FROM USERS");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM USERS");
             while (resultSet.next()) {
                 users.add(new User(resultSet.getString(2),
                         resultSet.getString(3), resultSet.getByte(4)));
