@@ -85,7 +85,7 @@ public class UserDaoJDBCImpl implements UserDao {
         String cleanTable = "TRUNCATE TABLE users";
         try (PreparedStatement statement = Util.getConnection().prepareStatement(cleanTable)) {
             statement.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
